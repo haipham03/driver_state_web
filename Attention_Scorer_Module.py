@@ -3,7 +3,7 @@ import time
 
 class AttentionScorer:
 
-    def __init__(self, t_now, ear_thresh, gaze_thresh, perclos_thresh=0.2, roll_thresh=60,
+    def __init__(self, t_now, ear_thresh=0.2, gaze_thresh=0.015, perclos_thresh=0.2, roll_thresh=60,
                  pitch_thresh=20, yaw_thresh=30, ear_time_thresh=4.0, gaze_time_thresh=2.,
                  pose_time_thresh=4.0, verbose=False):
         self.ear_thresh = ear_thresh

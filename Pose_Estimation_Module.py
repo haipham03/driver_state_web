@@ -57,7 +57,8 @@ class HeadPoseEstimator:
         self.NOSE_AXES_POINTS = np.array([[7, 0, 10],
                                           [0, 7, 6],
                                           [0, 0, 14]], dtype=float)
-    
+        
+    @staticmethod
     def _get_model_lms_ids():
         model_lms_ids = JAW_LMS_NUMS + [
             key for key, _ in procrustes_landmark_basis]
