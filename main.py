@@ -44,7 +44,6 @@ def _get_landmarks(lms):
             biggest_face = landmarks
     
     return biggest_face
-i = 0
 
 global detector
 detector = mp.solutions.face_mesh.FaceMesh(static_image_mode=False,
@@ -53,23 +52,29 @@ detector = mp.solutions.face_mesh.FaceMesh(static_image_mode=False,
                                             refine_landmarks=True)
 
 # instantiation of the eye detector and pose estimator objects
-global Eye_det
+
 Eye_det = EyeDet()
-global Head_pose
+
 Head_pose = HeadPoseEst()
 
-global t0
+
 t0 = time.perf_counter()
 
-global Scorer
 Scorer = AttScorer(t_now=t0)
 
+num_frames = 0
 
 def video_frame_callback(frame: av.VideoFrame) -> av.VideoFrame:
     frame = frame.to_ndarray(format="bgr24")
     t_now = time.perf_counter()
-    fps = i / (t_now - t0)
-    i += 1
+    global num_frames
+    if t_now - t0 >= 1:
+        fps = num_frames / (t_now - t0)
+    else:
+        fps = 10
+    num_frames += 1
+    print(num_frames)
+    print(fps)
     if fps == 0:
         fps = 10
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
