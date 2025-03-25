@@ -1,4 +1,4 @@
-# BTL môn Các vấn đề hiện đại trong CNTT
+T
 python = 3.8 is need to run
 
 To run:
